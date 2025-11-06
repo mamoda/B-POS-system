@@ -44,7 +44,7 @@ export function TableSelection({ onTableSelected, isLoading }: TableSelectionPro
                     : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
                 } disabled:opacity-50`}
               >
-                Table {table}
+                طاولة {table}
               </button>
             ))}
           </div>
