@@ -91,7 +91,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading menu...</p>
+          <p className="text-slate-600">تحميل القائمة...</p>
         </div>
       </div>
     );
@@ -103,8 +103,8 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Menu</h1>
-              <p className="text-slate-600 text-sm">Table {tableNumber}</p>
+              <h1 className="text-2xl font-bold text-slate-900">القائمة</h1>
+              <p className="text-slate-600 text-sm">طاولة {tableNumber}</p>
             </div>
             <button
               onClick={handleCheckout}
@@ -112,7 +112,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
               className="relative flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50"
             >
               <ShoppingCart className="w-5 h-5" />
-              <span>Checkout</span>
+              <span>الدفع</span>
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
                   {cartCount}
@@ -193,7 +193,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
                       className="flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors"
                     >
                       <Plus className="w-4 h-4" />
-                      Add
+                      إضافة
                     </button>
                   )}
                 </div>
@@ -216,7 +216,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
               className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2"
             >
               <ShoppingCart className="w-5 h-5" />
-              Checkout ({cartCount} items)
+              الدفع ({cartCount} عناصر)
             </button>
           </div>
         </div>
