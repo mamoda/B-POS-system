@@ -25,11 +25,11 @@ export function TableSelection({ onTableSelected, isLoading }: TableSelectionPro
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="flex items-center justify-center mb-8">
             <UtensilsCrossed className="w-12 h-12 text-blue-600 mr-3" />
-            <h1 className="text-3xl font-bold text-slate-900">Restaurant</h1>
+            <h1 className="text-3xl font-bold text-slate-900">B-POS</h1>
           </div>
 
           <p className="text-center text-slate-600 mb-8">
-            Select your table number to begin ordering
+            اختر الطاولة
           </p>
 
           <div className="grid grid-cols-3 gap-4 mb-8">
