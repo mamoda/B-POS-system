@@ -54,12 +54,12 @@ export function TableSelection({ onTableSelected, isLoading }: TableSelectionPro
             disabled={selectedTable === null || isSubmitting || isLoading}
             className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? 'Starting Order...' : 'Start Order'}
+            {isSubmitting ? 'بدأ الطلب...' : ' ابدأ الطلب'}
           </button>
         </div>
 
         <div className="text-center mt-6 text-slate-600 text-sm">
-          <p>Tables 1-12 available</p>
+          <p>الطاولات 1-12 متاحة</p>
         </div>
       </div>
     </div>
