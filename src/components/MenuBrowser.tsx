@@ -161,10 +161,10 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
                 <p className="text-slate-600 text-sm mb-3 line-clamp-2">{item.description}</p>
 
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-blue-600">${item.price.toFixed(2)}</span>
+                  <span className="text-2xl font-bold text-blue-600">ج.م{item.price.toFixed(2)}</span>
                   <div className="flex items-center gap-1 text-slate-600 text-xs">
                     <Clock className="w-4 h-4" />
-                    <span>{item.preparation_time_minutes} min</span>
+                    <span>{item.preparation_time_minutes} دقيقة</span>
                   </div>
                 </div>
 
@@ -208,7 +208,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
           <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <div>
               <p className="text-slate-600 text-sm">إجمالي الطلب</p>
-              <p className="text-3xl font-bold text-slate-900">${cartTotal.toFixed(2)}</p>
+              <p className="text-3xl font-bold text-slate-900">ج.م{cartTotal.toFixed(2)}</p>
             </div>
             <button
               onClick={handleCheckout}
