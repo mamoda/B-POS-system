@@ -137,7 +137,7 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
             </div>
 
             <p className="text-sm text-slate-600 mb-6">
-              A server will bring your order to the table and process payment when you're ready.
+              سيتم إحضار طلبك إلى الطاولة وسيتم معالجة الدفع عندما تكون جاهزًا.
             </p>
 
             <button
@@ -174,9 +174,9 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
                 <div key={idx} className="flex justify-between items-start pb-4 border-b border-slate-200 last:border-0 last:pb-0">
                   <div className="flex-1">
                     <p className="font-semibold text-slate-900">{cartItem.item.name}</p>
-                    <p className="text-sm text-slate-600">Qty: {cartItem.quantity}</p>
+                    <p className="text-sm text-slate-600">قطعة: {cartItem.quantity}</p>
                     {cartItem.instructions && (
-                      <p className="text-sm text-slate-500 italic mt-1">Note: {cartItem.instructions}</p>
+                      <p className="text-sm text-slate-500 italic mt-1">ملاحظة: {cartItem.instructions}</p>
                     )}
                   </div>
                   <p className="font-semibold text-slate-900 text-right">
@@ -223,7 +223,7 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
           </button>
 
           <p className="text-center text-sm text-slate-600">
-            Your order will be prepared and payment will be collected at your table
+            سيتم إعداد طلبك وسيتم تحصيل الدفع في طاولتك
           </p>
         </div>
       </div>
