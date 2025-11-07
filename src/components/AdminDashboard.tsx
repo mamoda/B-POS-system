@@ -305,7 +305,7 @@ export function AdminDashboard() {
               <tbody className="w-full">
                 {menuItems.map(item => (
                   <tr key={item.id} className=" border-b border-slate-200 hover:bg-slate-50 transition-colors">
-                    <td className=" text-right flex gap-2">
+                    <td className="px-6 py-4 text-right flex gap-2">
                       <button
                         onClick={() => handleEdit(item)}
                         className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
