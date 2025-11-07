@@ -87,7 +87,7 @@ export function KitchenDisplay() {
   return (
     <div className="min-h-screen bg-slate-900 p-4">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-row-reverseitems-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-white">عرض المطبخ</h1>
             <p className="text-slate-400 mt-1">{orders.length} طلبات نشطة</p>
@@ -138,7 +138,7 @@ export function KitchenDisplay() {
                     </div>
 
                     <div className="bg-slate-700 rounded-lg p-3 mb-4">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex flex-row-reverse items-center gap-2 mb-2">
                         <Clock className="w-4 h-4 text-blue-400" />
                         <span className="text-slate-300 text-sm">
                           تم تقديم الطلب: {new Date(order.created_at).toLocaleTimeString()}
