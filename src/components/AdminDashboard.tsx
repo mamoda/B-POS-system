@@ -282,7 +282,7 @@ export function AdminDashboard() {
             <table className="w-full">
               <thead>
                 <tr className="bg-slate-100 border-b border-slate-200">
-                   <th className="px-6  text-left text-sm font-semibold text-slate-900">
+                   <th className="px-6 py-4  text-right text-sm font-semibold text-slate-900">
                     الأحداث
                   </th>
                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
@@ -308,13 +308,13 @@ export function AdminDashboard() {
                     <td className="px-6 py-4 text-right flex gap-2">
                       <button
                         onClick={() => handleEdit(item)}
-                        className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
+                        className="p-4 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
                       >
                         <Edit2 className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleDelete(item.id)}
-                        className="p-2 text-red-600 hover:bg-red-100 rounded-lg transition-colors"
+                        className="p-4 text-red-600 hover:bg-red-100 rounded-lg transition-colors"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>
