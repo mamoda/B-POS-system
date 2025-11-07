@@ -285,19 +285,19 @@ export function AdminDashboard() {
                    <th className="px-6 py-2  text-left text-sm font-semibold text-slate-900">
                     الأحداث
                   </th>
-                   <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                   <th className="px-6 py-2text-right text-sm font-semibold text-slate-900">
                     متاح
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-2text-right text-sm font-semibold text-slate-900">
                     وقت التحضير
                   </th>
-                 <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                 <th className="px-6 py-2text-right text-sm font-semibold text-slate-900">
                     السعر
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-2text-right text-sm font-semibold text-slate-900">
                     النوع
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-2text-right text-sm font-semibold text-slate-900">
                     الاسم
                   </th>
                </tr>
