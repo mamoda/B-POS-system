@@ -164,7 +164,7 @@ export function AdminDashboard() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-slate-900 mb-2">
-                    Name *
+                    الاسم *
                   </label>
                   <input
                     type="text"
@@ -177,7 +177,7 @@ export function AdminDashboard() {
 
                 <div>
                   <label className="block text-sm font-semibold text-slate-900 mb-2">
-                    Category *
+                    النوع *
                   </label>
                   <input
                     type="text"
@@ -196,7 +196,7 @@ export function AdminDashboard() {
 
                 <div>
                   <label className="block text-sm font-semibold text-slate-900 mb-2">
-                    Price * ($)
+                    اسعر * ($)
                   </label>
                   <input
                     type="number"
@@ -210,7 +210,7 @@ export function AdminDashboard() {
 
                 <div>
                   <label className="block text-sm font-semibold text-slate-900 mb-2">
-                    Prep Time (minutes)
+                     وقت التحضير (minutes)
                   </label>
                   <input
                     type="number"
@@ -223,7 +223,7 @@ export function AdminDashboard() {
 
               <div>
                 <label className="block text-sm font-semibold text-slate-900 mb-2">
-                  Description
+                  الوصف
                 </label>
                 <textarea
                   value={formData.description}
@@ -235,7 +235,7 @@ export function AdminDashboard() {
 
               <div>
                 <label className="block text-sm font-semibold text-slate-900 mb-2">
-                  Image URL
+                   رابط الصورة
                 </label>
                 <input
                   type="url"
@@ -254,7 +254,7 @@ export function AdminDashboard() {
                     onChange={(e) => setFormData({ ...formData, available: e.target.checked })}
                     className="w-4 h-4"
                   />
-                  <span className="text-slate-900 font-semibold">Available</span>
+                  <span className="text-slate-900 font-semibold">متاح</span>
                 </label>
               </div>
 
@@ -270,7 +270,7 @@ export function AdminDashboard() {
                   onClick={handleCancel}
                   className="flex-1 bg-slate-300 text-slate-900 py-3 rounded-lg font-semibold hover:bg-slate-400 transition-colors"
                 >
-                  Cancel
+                  إلغاء
                 </button>
               </div>
             </form>
@@ -283,22 +283,22 @@ export function AdminDashboard() {
               <thead>
                 <tr className="bg-slate-100 border-b border-slate-200">
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                    Name
+                    الاسم
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                    Category
+                    النوع
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                    Price
+                    السعر
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                    Prep Time
+                    وقت التحضير
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                    Available
+                    متاح
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                    Actions
+                    الأحداث
                   </th>
                 </tr>
               </thead>

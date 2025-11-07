@@ -78,7 +78,7 @@ export function KitchenDisplay() {
       <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto mb-4"></div>
-          <p className="text-blue-400">Loading orders...</p>
+          <p className="text-blue-400">تحميل الطلبات...</p>
         </div>
       </div>
     );
@@ -89,8 +89,8 @@ export function KitchenDisplay() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-white">Kitchen Display</h1>
-            <p className="text-slate-400 mt-1">{orders.length} active orders</p>
+            <h1 className="text-4xl font-bold text-white">عرض المطبخ</h1>
+            <p className="text-slate-400 mt-1">{orders.length} طلبات نشطة</p>
           </div>
           <button
             onClick={() => setAutoRefresh(!autoRefresh)}
@@ -107,8 +107,8 @@ export function KitchenDisplay() {
         {orders.length === 0 ? (
           <div className="text-center py-16">
             <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <p className="text-xl text-slate-300">No active orders</p>
-            <p className="text-slate-500 mt-2">Kitchen is all caught up!</p>
+            <p className="text-xl text-slate-300">لا طلبات نشطة</p>
+            <p className="text-slate-500 mt-2">المطبخ جاهز!</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -127,7 +127,7 @@ export function KitchenDisplay() {
                 >
                   <div className="p-4">
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-3xl font-bold text-white">Table {order.table_number}</h2>
+                      <h2 className="text-3xl font-bold text-white">طاولة {order.table_number}</h2>
                       <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
                         status === 'complete'
                           ? 'bg-green-500 text-white'
@@ -141,12 +141,12 @@ export function KitchenDisplay() {
                       <div className="flex items-center gap-2 mb-2">
                         <Clock className="w-4 h-4 text-blue-400" />
                         <span className="text-slate-300 text-sm">
-                          Order placed: {new Date(order.created_at).toLocaleTimeString()}
+                          تم تقديم الطلب: {new Date(order.created_at).toLocaleTimeString()}
                         </span>
                       </div>
                       {order.estimated_ready_time && (
                         <div className="text-blue-400 font-semibold">
-                          Estimated ready: {new Date(order.estimated_ready_time).toLocaleTimeString()}
+                          من المتوقع أن يكون جاهزًا: {new Date(order.estimated_ready_time).toLocaleTimeString()}
                         </div>
                       )}
                     </div>
@@ -167,7 +167,7 @@ export function KitchenDisplay() {
                             </p>
                             {item.special_instructions && (
                               <p className="text-sm text-slate-300 mt-1 italic">
-                                Note: {item.special_instructions}
+                                تذكير: {item.special_instructions}
                               </p>
                             )}
                           </div>
@@ -176,7 +176,7 @@ export function KitchenDisplay() {
                               onClick={() => handleItemReady(item.id)}
                               className="ml-2 px-3 py-1 bg-blue-600 text-white text-xs rounded font-semibold hover:bg-blue-700 transition-colors"
                             >
-                              Ready
+                              جاهز
                             </button>
                           )}
                           {(item.status === 'ready' || item.status === 'completed') && (
@@ -192,7 +192,7 @@ export function KitchenDisplay() {
                         className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
                       >
                         <CheckCircle2 className="w-5 h-5" />
-                        Order Complete - Ready for Pickup
+                        الطلب مكتمل - جاهز للاستلام
                       </button>
                     )}
                   </div>
