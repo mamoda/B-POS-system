@@ -305,25 +305,6 @@ export function AdminDashboard() {
               <tbody className="w-full">
                 {menuItems.map(item => (
                   <tr key={item.id} className=" border-b border-slate-200 hover:bg-slate-50 transition-colors">
-                    <td className="px-6 py-4 text-right font-semibold text-slate-900">{item.name}</td>
-                    <td className="px-6 py-4 text-right text-slate-600">{item.category}</td>
-                    <td className="px-6 py-4 text-right font-semibold text-blue-600">
-                       ج.م {item.price.toFixed(2)}
-                    </td>
-                    <td className="px-6 py-4 text-right text-slate-600">
-                      {item.preparation_time_minutes} دقيقة
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <span
-                        className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                          item.available
-                            ? 'bg-green-100 text-green-700'
-                            : 'bg-red-100 text-red-700'
-                        }`}
-                      >
-                        {item.available ? 'Available' : 'Unavailable'}
-                      </span>
-                    </td>
                     <td className="px-6 py-4 text-right flex gap-2">
                       <button
                         onClick={() => handleEdit(item)}
@@ -338,7 +319,26 @@ export function AdminDashboard() {
                         <Trash2 className="w-5 h-5" />
                       </button>
                     </td>
-                  </tr>
+                     <td className="px-6 py-4 text-right">
+                      <span
+                        className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                          item.available
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-red-100 text-red-700'
+                        }`}
+                      >
+                        {item.available ? 'Available' : 'Unavailable'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-right text-slate-600">
+                      {item.preparation_time_minutes} دقيقة
+                    </td>
+                    <td className="px-6 py-4 text-right font-semibold text-blue-600">
+                       ج.م {item.price.toFixed(2)}
+                    </td>
+                     <td className="px-6 py-4 text-right text-slate-600">{item.category}</td>
+                      <td className="px-6 py-4 text-right font-semibold text-slate-900">{item.name}</td>
+                </tr>
                 ))}
               </tbody>
             </table>
