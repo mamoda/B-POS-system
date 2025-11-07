@@ -100,7 +100,7 @@ export function KitchenDisplay() {
                 : 'bg-slate-700 text-slate-300'
             }`}
           >
-            {autoRefresh ? 'Auto-refresh: ON' : 'Auto-refresh: OFF'}
+            {autoRefresh ? 'تحديث تلقائي: ON' : 'تحديث تلقائي: OFF'}
           </button>
         </div>
 
