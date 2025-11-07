@@ -126,7 +126,7 @@ export function KitchenDisplay() {
                   }`}
                 >
                   <div className="p-4">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex flex-row-reverse items-center justify-between mb-4">
                       <h2 className="text-3xl font-bold text-white">طاولة {order.table_number}</h2>
                       <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
                         status === 'complete'
