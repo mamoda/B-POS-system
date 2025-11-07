@@ -282,7 +282,7 @@ export function AdminDashboard() {
             <table className="w-full">
               <thead>
                 <tr className="bg-slate-100 border-b border-slate-200">
-                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                   <th className="px-6  text-left text-sm font-semibold text-slate-900">
                     الأحداث
                   </th>
                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
