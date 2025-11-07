@@ -277,7 +277,7 @@ export function AdminDashboard() {
           </div>
         )}
 
-        <div className="flex-row-reverse bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className=" bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="flex-row-reverse w-full">
               <thead>
@@ -304,7 +304,7 @@ export function AdminDashboard() {
               </thead>
               <tbody className="w-full">
                 {menuItems.map(item => (
-                  <tr key={item.id} className="flex-row-reverse border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                  <tr key={item.id} className=" border-b border-slate-200 hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 text-right font-semibold text-slate-900">{item.name}</td>
                     <td className="px-6 py-4 text-right text-slate-600">{item.category}</td>
                     <td className="px-6 py-4 text-right font-semibold text-blue-600">
