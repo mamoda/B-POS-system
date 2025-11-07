@@ -280,29 +280,29 @@ export function AdminDashboard() {
         <div className="flex-row-reverse bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="flex-row-reverse w-full">
-              <thead className="flex-row-reverse">
-                <tr className="flex-row-reverse bg-slate-100 border-b border-slate-200">
+              <thead>
+                <tr className="bg-slate-100 border-b border-slate-200">
+                   <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                    الأحداث
+                  </th>
+                   <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                    متاح
+                  </th>
                   <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
-                    الاسم
+                    وقت التحضير
+                  </th>
+                 <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
+                    السعر
                   </th>
                   <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     النوع
                   </th>
                   <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
-                    السعر
+                    الاسم
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
-                    وقت التحضير
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
-                    متاح
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
-                    الأحداث
-                  </th>
-                </tr>
+               </tr>
               </thead>
-              <tbody className="flex-row-reverse w-full">
+              <tbody className="w-full">
                 {menuItems.map(item => (
                   <tr key={item.id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-semibold text-slate-900">{item.name}</td>
