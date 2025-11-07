@@ -120,16 +120,16 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
               </div>
               <div className="border-t border-slate-200 pt-3 space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-600">Subtotal</span>
-                  <span className="text-slate-900">${subtotal.toFixed(2)}</span>
+                  <span className="text-slate-600">المجموع الفرعي</span>
+                  <span className="text-slate-900">ج.م{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-600">Tax (10%)</span>
-                  <span className="text-slate-900">${tax.toFixed(2)}</span>
+                  <span className="text-slate-900">ج.م{tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t border-slate-200">
-                  <span className="text-slate-900">Total</span>
-                  <span className="text-blue-600">${total.toFixed(2)}</span>
+                  <span className="text-slate-900">إجمالي</span>
+                  <span className="text-blue-600">ج.م{total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -158,15 +158,15 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
           className="flex items-center gap-2 text-blue-600 font-semibold mb-6 hover:text-blue-700"
         >
           <ArrowLeft className="w-5 h-5" />
-          Back to Menu
+          الرجوع إلى القائمة
         </button>
 
         <div className="bg-white rounded-2xl shadow-sm p-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Order Review</h1>
-          <p className="text-slate-600 mb-8">Table {tableNumber}</p>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">مراجعة الطلب</h1>
+          <p className="text-slate-600 mb-8">الطاولة {tableNumber}</p>
 
           <div className="bg-slate-50 rounded-xl p-6 mb-8">
-            <h2 className="font-semibold text-slate-900 mb-4">Items</h2>
+            <h2 className="font-semibold text-slate-900 mb-4">عناصر</h2>
             <div className="space-y-4">
               {Object.values(cart).map((cartItem, idx) => (
                 <div key={idx} className="flex justify-between items-start pb-4 border-b border-slate-200 last:border-0 last:pb-0">
@@ -178,7 +178,7 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
                     )}
                   </div>
                   <p className="font-semibold text-slate-900 text-right">
-                    ${(cartItem.item.price * cartItem.quantity).toFixed(2)}
+                    ج.م {(cartItem.item.price * cartItem.quantity).toFixed(2)}
                   </p>
                 </div>
               ))}
@@ -189,11 +189,11 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
             <div className="space-y-3">
               <div className="flex justify-between text-slate-700">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>ج.م{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-slate-700">
                 <span>Tax (10%)</span>
-                <span>${tax.toFixed(2)}</span>
+                <span>ج.م{tax.toFixed(2)}</span>
               </div>
               <div className="border-t border-blue-200 pt-3 flex justify-between text-xl font-bold text-slate-900">
                 <span>Total</span>
@@ -206,7 +206,7 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
             <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-8 flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-red-900">Error</h3>
+                <h3 className="font-semibold text-red-900">خطأ</h3>
                 <p className="text-sm text-red-700">{error}</p>
               </div>
             </div>

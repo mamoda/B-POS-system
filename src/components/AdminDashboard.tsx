@@ -308,10 +308,10 @@ export function AdminDashboard() {
                     <td className="px-6 py-4 font-semibold text-slate-900">{item.name}</td>
                     <td className="px-6 py-4 text-slate-600">{item.category}</td>
                     <td className="px-6 py-4 font-semibold text-blue-600">
-                      ${item.price.toFixed(2)}
+                       ج.م {item.price.toFixed(2)}
                     </td>
                     <td className="px-6 py-4 text-slate-600">
-                      {item.preparation_time_minutes} min
+                      {item.preparation_time_minutes} دقيقة
                     </td>
                     <td className="px-6 py-4">
                       <span
@@ -346,7 +346,7 @@ export function AdminDashboard() {
 
           {menuItems.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-slate-600 text-lg">No menu items yet. Create one to get started!</p>
+              <p className="text-slate-600 text-lg">  لا منتجات في القائمة حتى الآن قم بإنشاء منتج الآن</p>
             </div>
           )}
         </div>
