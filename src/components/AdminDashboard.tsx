@@ -196,7 +196,7 @@ export function AdminDashboard() {
 
                 <div>
                   <label className="block text-sm font-semibold text-slate-900 mb-2">
-                    اسعر * ($)
+                    اسعر * (ج.م)
                   </label>
                   <input
                     type="number"
