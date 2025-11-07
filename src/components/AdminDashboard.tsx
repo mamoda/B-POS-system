@@ -281,7 +281,7 @@ export function AdminDashboard() {
           <div className="overflow-x-auto">
             <table className="flex-row-reverse w-full">
               <thead className="flex-row-reverse">
-                <tr className="bg-slate-100 border-b border-slate-200">
+                <tr className="flex-row-reverse bg-slate-100 border-b border-slate-200">
                   <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     الاسم
                   </th>
@@ -302,7 +302,7 @@ export function AdminDashboard() {
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="flex-row-reverse w-full">
                 {menuItems.map(item => (
                   <tr key={item.id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-semibold text-slate-900">{item.name}</td>
