@@ -304,16 +304,16 @@ export function AdminDashboard() {
               </thead>
               <tbody className="w-full">
                 {menuItems.map(item => (
-                  <tr key={item.id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-slate-900">{item.name}</td>
-                    <td className="px-6 py-4 text-slate-600">{item.category}</td>
-                    <td className="px-6 py-4 font-semibold text-blue-600">
+                  <tr key={item.id} className="flex-row-reverse border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td className="px-6 py-4 text-right font-semibold text-slate-900">{item.name}</td>
+                    <td className="px-6 py-4 text-right text-slate-600">{item.category}</td>
+                    <td className="px-6 py-4 text-right font-semibold text-blue-600">
                        ج.م {item.price.toFixed(2)}
                     </td>
-                    <td className="px-6 py-4 text-slate-600">
+                    <td className="px-6 py-4 text-right text-slate-600">
                       {item.preparation_time_minutes} دقيقة
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 text-right">
                       <span
                         className={`px-3 py-1 rounded-full text-sm font-semibold ${
                           item.available
@@ -324,7 +324,7 @@ export function AdminDashboard() {
                         {item.available ? 'Available' : 'Unavailable'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 flex gap-2">
+                    <td className="px-6 py-4 text-right flex gap-2">
                       <button
                         onClick={() => handleEdit(item)}
                         className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
