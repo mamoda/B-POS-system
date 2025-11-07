@@ -126,7 +126,7 @@ export function AdminDashboard() {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading dashboard...</p>
+          <p className="text-slate-600">جارٍ تحميل لوحة التحكم...</p>
         </div>
       </div>
     );
@@ -135,13 +135,13 @@ export function AdminDashboard() {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-row-reverse items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
               <BarChart3 className="w-8 h-8 text-blue-600" />
-              Admin Dashboard
+              لوحة التحكم
             </h1>
-            <p className="text-slate-600 mt-1">{menuItems.length} menu items</p>
+            <p className="text-slate-600 mt-1">{menuItems.length} عناصر القائمة</p>
           </div>
           {!showForm && (
             <button
@@ -149,7 +149,7 @@ export function AdminDashboard() {
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               <Plus className="w-5 h-5" />
-              Add Item
+              إضافة عنصر
             </button>
           )}
         </div>
