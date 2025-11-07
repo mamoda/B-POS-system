@@ -34,6 +34,8 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
 
   const handlePlaceOrder = async () => {
     setLoading(true);
+
+
     setError(null);
 
     try {
@@ -87,25 +89,25 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
               <CheckCircle className="w-16 h-16 text-green-600 mx-auto" />
             </div>
 
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">Order Confirmed!</h1>
-            <p className="text-slate-600 mb-6">Your order has been sent to the kitchen</p>
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">تم تأكيد الطلب!</h1>
+            <p className="text-slate-600 mb-6">تم إرسال الطلب إلى المطبخ</p>
 
             <div className="bg-blue-50 rounded-xl p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-slate-600">Table Number</span>
+                <span className="text-slate-600">رقم الطاولة</span>
                 <span className="text-2xl font-bold text-blue-600">#{tableNumber}</span>
               </div>
               <div className="border-t border-blue-200 pt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Clock className="w-5 h-5 text-blue-600" />
-                  <span className="text-slate-600">Ready in approximately</span>
+                  <span className="text-slate-600">جاهز في حوالي</span>
                 </div>
                 <span className="font-bold text-blue-600">{estimatedTime}</span>
               </div>
             </div>
 
             <div className="bg-slate-50 rounded-xl p-4 mb-6 text-left">
-              <h3 className="font-semibold text-slate-900 mb-3">Order Summary</h3>
+              <h3 className="font-semibold text-slate-900 mb-3">ملخص الطلب</h3>
               <div className="space-y-2 mb-3 max-h-48 overflow-y-auto">
                 {Object.values(cart).map((cartItem, idx) => (
                   <div key={idx} className="flex justify-between text-sm">
@@ -142,7 +144,7 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
               onClick={onBack}
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
-              Continue Browsing Menu
+              استمر في تصفح القائمة
             </button>
           </div>
         </div>
@@ -188,16 +190,16 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 mb-8">
             <div className="space-y-3">
               <div className="flex justify-between text-slate-700">
-                <span>Subtotal</span>
+                <span>المجموع الفرعي</span>
                 <span>ج.م{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-slate-700">
-                <span>Tax (10%)</span>
+                <span>الضريبة (10%)</span>
                 <span>ج.م{tax.toFixed(2)}</span>
               </div>
               <div className="border-t border-blue-200 pt-3 flex justify-between text-xl font-bold text-slate-900">
-                <span>Total</span>
-                <span className="text-blue-600">${total.toFixed(2)}</span>
+                <span>الإجمالي</span>
+                <span className="text-blue-600">ج.م{total.toFixed(2)}</span>
               </div>
             </div>
           </div>
