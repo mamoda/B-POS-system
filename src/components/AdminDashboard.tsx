@@ -155,7 +155,7 @@ export function AdminDashboard() {
         </div>
 
         {showForm && (
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div className="flex-row-reverse bg-white rounded-2xl shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-6">
               {editingId ? 'Edit Menu Item' : 'Add New Menu Item'}
             </h2>
