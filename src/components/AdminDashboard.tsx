@@ -279,8 +279,8 @@ export function AdminDashboard() {
 
         <div className=" bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="flex-row-reverse w-full">
-              <thead className="w-full">
+            <table className="w-full">
+              <thead>
                 <tr className="bg-slate-100 border-b border-slate-200">
                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     الأحداث
