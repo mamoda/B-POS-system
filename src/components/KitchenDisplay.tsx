@@ -133,7 +133,7 @@ export function KitchenDisplay() {
                           ? 'bg-green-500 text-white'
                           : 'bg-yellow-500 text-slate-900'
                       }`}>
-                        {status === 'complete' ? 'READY' : 'PREPARING'}
+                        {status === 'complete' ? 'جاهز' : 'يتم التحضير'}
                       </div>
                     </div>
 
