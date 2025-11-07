@@ -280,24 +280,24 @@ export function AdminDashboard() {
         <div className="flex-row-reverse bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="flex-row-reverse w-full">
-              <thead>
+              <thead className="flex-row-reverse">
                 <tr className="bg-slate-100 border-b border-slate-200">
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     الاسم
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     النوع
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     السعر
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     وقت التحضير
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     متاح
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                     الأحداث
                   </th>
                 </tr>
