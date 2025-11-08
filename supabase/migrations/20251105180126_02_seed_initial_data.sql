@@ -27,10 +27,10 @@ ON CONFLICT (table_number) DO NOTHING;
 -- Seed Menu Items - Appetizers
 INSERT INTO menu_items (name, description, category, price, available, preparation_time_minutes)
 VALUES 
-  ('Bruschetta', 'Crispy bread with tomato, garlic, and basil', 'Appetizers', 8.99, true, 5),
-  ('Calamari Fritti', 'Crispy fried squid served with marinara sauce', 'Appetizers', 12.99, true, 8),
-  ('Spring Rolls', 'Fresh vegetable spring rolls with sweet chili sauce', 'Appetizers', 7.99, true, 6),
-  ('Garlic Bread', 'Toasted bread with garlic butter and herbs', 'Appetizers', 5.99, true, 4)
+  ('Bruschetta', 'Crispy bread with tomato, garlic, and basil', 'المشروبات', 8.99, true, 5),
+  ('Calamari Fritti', 'Crispy fried squid served with marinara sauce', 'المشروبات', 12.99, true, 8),
+  ('Spring Rolls', 'Fresh vegetable spring rolls with sweet chili sauce', 'المشروبات', 7.99, true, 6),
+  ('Garlic Bread', 'Toasted bread with garlic butter and herbs', 'المشروبات', 5.99, true, 4)
 ON CONFLICT DO NOTHING;
 
 -- Seed Menu Items - Main Courses
