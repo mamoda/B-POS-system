@@ -101,7 +101,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
     <div className="min-h-screen bg-slate-50 pb-32">
       <div className="sticky top-0 bg-white shadow-sm z-10">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-row-reverse items-center justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold text-slate-900">القائمة</h1>
               <p className="text-slate-600 text-sm">طاولة {tableNumber}</p>
