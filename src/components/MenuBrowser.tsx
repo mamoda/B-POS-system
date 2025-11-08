@@ -160,7 +160,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
                 <h3 className="font-semibold text-slate-900 text-lg mb-1">{item.name}</h3>
                 <p className="text-slate-600 text-sm mb-3 line-clamp-2">{item.description}</p>
 
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-row-reverse items-center justify-between mb-4">
                   <span className="text-2xl font-bold text-blue-600">ج.م{item.price.toFixed(2)}</span>
                   <div className="flex items-center gap-1 text-slate-600 text-xs">
                     <Clock className="w-4 h-4" />
