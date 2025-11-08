@@ -121,7 +121,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
             </button>
           </div>
 
-          <div className="flex gap-2 overflow-x-auto pb-2">
+          <div className="flex flex-row-reverse gap-2 overflow-x-auto pb-2">
             {categories.map(category => (
               <button
                 key={category}
