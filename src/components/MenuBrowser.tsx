@@ -24,7 +24,6 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
   const [cart, setCart] = useState<Cart>({});
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [categories, setCategories] = useState<string[]>([]);
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'wallet'>('card');
 
   useEffect(() => {
     const loadMenu = async () => {
