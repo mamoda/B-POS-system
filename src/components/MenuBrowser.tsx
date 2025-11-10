@@ -3,6 +3,7 @@ import { Plus, Minus, ShoppingCart, Clock } from 'lucide-react';
 import { menuApi } from '../lib/api';
 import { MenuItem } from '../lib/supabase';
 
+
 interface Cart {
   [menuItemId: string]: {
     item: MenuItem;
@@ -23,6 +24,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
   const [cart, setCart] = useState<Cart>({});
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [categories, setCategories] = useState<string[]>([]);
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'wallet'>('card');
 
   useEffect(() => {
     const loadMenu = async () => {
@@ -202,6 +204,34 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
           ))}
         </div>
       </div>
+
+
+<div className="bg-slate-100 rounded-xl p-4 mb-6">
+  <h3 className="font-semibold text-slate-900 mb-3">طريقة الدفع</h3>
+  <div className="flex gap-3">
+    <button
+      onClick={() => setPaymentMethod('card')}
+      className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
+        paymentMethod === 'card'
+          ? 'bg-blue-600 text-white shadow-md'
+          : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50'
+      }`}
+    >
+      💳 فيزا / ماستركارد
+    </button>
+
+    <button
+      onClick={() => setPaymentMethod('wallet')}
+      className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
+        paymentMethod === 'wallet'
+          ? 'bg-blue-600 text-white shadow-md'
+          : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50'
+      }`}
+    >
+      📱 محفظة إلكترونية
+    </button>
+  </div>
+</div>
 
       {cartCount > 0 && (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg">
