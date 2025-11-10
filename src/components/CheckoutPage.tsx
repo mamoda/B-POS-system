@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { ArrowLeft, AlertCircle, CheckCircle, Clock } from 'lucide-react';
-import { orderApi, orderItemApi } from '../lib/api';
-import { MenuItem, Order } from '../lib/supabase';
+import { useState, useEffect } from "react";
+import { ArrowLeft, AlertCircle, CheckCircle, Clock } from "lucide-react";
+import { orderApi, orderItemApi } from "../lib/api";
+import { MenuItem, Order } from "../lib/supabase";
 
 interface Cart {
   [menuItemId: string]: {
@@ -18,14 +18,20 @@ interface CheckoutPageProps {
   onOrderComplete: (order: Order) => void;
 }
 
-export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: CheckoutPageProps) {
+export function CheckoutPage({
+  tableNumber,
+  cart,
+  onBack,
+  onOrderComplete,
+}: CheckoutPageProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [estimatedTime, setEstimatedTime] = useState<string | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "wallet">("card");
 
   const subtotal = Object.values(cart).reduce(
-    (sum, item) => sum + (item.item.price * item.quantity),
+    (sum, item) => sum + item.item.price * item.quantity,
     0
   );
 
@@ -35,12 +41,11 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
   const handlePlaceOrder = async () => {
     setLoading(true);
 
-
     setError(null);
 
     try {
       const orders = await orderApi.getOrdersByTable(tableNumber);
-      let tableData = null;
+      // let tableData = null;
 
       if (orders.length === 0) {
         return;
@@ -59,14 +64,16 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
       }
 
       await orderApi.updateOrderTotals(currentOrder.id);
-      await orderApi.updateOrder(currentOrder.id, { status: 'confirmed' });
+      await orderApi.updateOrder(currentOrder.id, { status: "confirmed" });
 
       const maxPrepTime = Math.max(
-        ...Object.values(cart).map(item => item.item.preparation_time_minutes)
+        ...Object.values(cart).map((item) => item.item.preparation_time_minutes)
       );
 
       const readyTime = new Date(Date.now() + maxPrepTime * 60000);
-      setEstimatedTime(readyTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+      setEstimatedTime(
+        readyTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      );
       setOrderPlaced(true);
 
       const updatedOrder = await orderApi.getOrder(currentOrder.id);
@@ -74,7 +81,7 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
         onOrderComplete(updatedOrder);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to place order');
+      setError(err instanceof Error ? err.message : "Failed to place order");
     } finally {
       setLoading(false);
     }
@@ -89,13 +96,17 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
               <CheckCircle className="w-16 h-16 text-green-600 mx-auto" />
             </div>
 
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">تم تأكيد الطلب!</h1>
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">
+              تم تأكيد الطلب!
+            </h1>
             <p className="text-slate-600 mb-6">تم إرسال الطلب إلى المطبخ</p>
 
             <div className="bg-blue-50 rounded-xl p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-slate-600">رقم الطاولة</span>
-                <span className="text-2xl font-bold text-blue-600">#{tableNumber}</span>
+                <span className="text-2xl font-bold text-blue-600">
+                  #{tableNumber}
+                </span>
               </div>
               <div className="border-t border-blue-200 pt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -123,7 +134,9 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
               <div className="border-t border-slate-200 pt-3 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-600">المجموع الفرعي</span>
-                  <span className="text-slate-900">ج.م{subtotal.toFixed(2)}</span>
+                  <span className="text-slate-900">
+                    ج.م{subtotal.toFixed(2)}
+                  </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-600">Tax (10%)</span>
@@ -164,19 +177,30 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
         </button>
 
         <div className="bg-white rounded-2xl shadow-sm p-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">مراجعة الطلب</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">
+            مراجعة الطلب
+          </h1>
           <p className="text-slate-600 mb-8">الطاولة {tableNumber}</p>
 
           <div className="bg-slate-50 rounded-xl p-6 mb-8">
             <h2 className="font-semibold text-slate-900 mb-4">عناصر</h2>
             <div className="space-y-4">
               {Object.values(cart).map((cartItem, idx) => (
-                <div key={idx} className="flex justify-between items-start pb-4 border-b border-slate-200 last:border-0 last:pb-0">
+                <div
+                  key={idx}
+                  className="flex justify-between items-start pb-4 border-b border-slate-200 last:border-0 last:pb-0"
+                >
                   <div className="flex-1">
-                    <p className="font-semibold text-slate-900">{cartItem.item.name}</p>
-                    <p className="text-sm text-slate-600">قطعة: {cartItem.quantity}</p>
+                    <p className="font-semibold text-slate-900">
+                      {cartItem.item.name}
+                    </p>
+                    <p className="text-sm text-slate-600">
+                      قطعة: {cartItem.quantity}
+                    </p>
                     {cartItem.instructions && (
-                      <p className="text-sm text-slate-500 italic mt-1">ملاحظة: {cartItem.instructions}</p>
+                      <p className="text-sm text-slate-500 italic mt-1">
+                        ملاحظة: {cartItem.instructions}
+                      </p>
                     )}
                   </div>
                   <p className="font-semibold text-slate-900 text-right">
@@ -213,13 +237,39 @@ export function CheckoutPage({ tableNumber, cart, onBack, onOrderComplete }: Che
               </div>
             </div>
           )}
+          <div className="bg-slate-100 rounded-xl p-4 mb-6">
+            <h3 className="font-semibold text-slate-900 mb-3">طريقة الدفع</h3>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setPaymentMethod("card")}
+                className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
+                  paymentMethod === "card"
+                    ? "bg-blue-600 text-white shadow-md"
+                    : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
+                }`}
+              >
+                💳 فيزا / ماستركارد
+              </button>
+
+              <button
+                onClick={() => setPaymentMethod("wallet")}
+                className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
+                  paymentMethod === "wallet"
+                    ? "bg-blue-600 text-white shadow-md"
+                    : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
+                }`}
+              >
+                📱 محفظة إلكترونية
+              </button>
+            </div>
+          </div>
 
           <button
             onClick={handlePlaceOrder}
             disabled={loading}
             className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-4 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 mb-4"
           >
-            {loading ? 'Placing Order...' : 'Place Order'}
+            {loading ? "Placing Order..." : "Place Order"}
           </button>
 
           <p className="text-center text-sm text-slate-600">
