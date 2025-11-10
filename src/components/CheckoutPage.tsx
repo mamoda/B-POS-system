@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ArrowLeft, AlertCircle, CheckCircle, Clock } from "lucide-react";
 import { orderApi, orderItemApi } from "../lib/api";
 import { MenuItem, Order } from "../lib/supabase";
-import { CreditCard, Smartphone } from "lucide-react";
+import { CreditCard, Smartphone, Wallet } from "lucide-react";
 
 interface Cart {
   [menuItemId: string]: {
@@ -29,7 +29,7 @@ export function CheckoutPage({
   const [error, setError] = useState<string | null>(null);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [estimatedTime, setEstimatedTime] = useState<string | null>(null);
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "wallet">("card");
+const [paymentMethod, setPaymentMethod] = useState<"card" | "wallet" | "cash">("card");
 
   const subtotal = Object.values(cart).reduce(
     (sum, item) => sum + item.item.price * item.quantity,
@@ -238,40 +238,54 @@ export function CheckoutPage({
               </div>
             </div>
           )}
+
           <div className="bg-slate-100 rounded-2xl p-5 mb-6 shadow-sm">
             <h3 className="font-semibold text-slate-900 mb-4 text-lg">
               طريقة الدفع
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* بطاقة بنكية */}
               <button
                 onClick={() => setPaymentMethod("card")}
-                className={`flex items-center justify-center gap-3 py-4 rounded-xl border transition-all duration-200 ${
+                className={`flex flex-col items-center justify-center gap-2 py-4 rounded-xl border transition-all duration-200 ${
                   paymentMethod === "card"
                     ? "bg-blue-600 text-white border-blue-600 shadow-md scale-[1.02]"
                     : "bg-white text-slate-700 border-slate-300 hover:border-blue-400 hover:shadow"
                 }`}
               >
-                <CreditCard className="w-5 h-5" />
-                <span className="font-semibold">بطاقة بنكية</span>
+                <CreditCard className="w-6 h-6" />
+                <span className="font-semibold text-sm">بطاقة بنكية</span>
               </button>
 
               {/* محفظة إلكترونية */}
               <button
                 onClick={() => setPaymentMethod("wallet")}
-                className={`flex items-center justify-center gap-3 py-4 rounded-xl border transition-all duration-200 ${
+                className={`flex flex-col items-center justify-center gap-2 py-4 rounded-xl border transition-all duration-200 ${
                   paymentMethod === "wallet"
                     ? "bg-blue-600 text-white border-blue-600 shadow-md scale-[1.02]"
                     : "bg-white text-slate-700 border-slate-300 hover:border-blue-400 hover:shadow"
                 }`}
               >
-                <Smartphone className="w-5 h-5" />
-                <span className="font-semibold">محفظة إلكترونية</span>
+                <Smartphone className="w-6 h-6" />
+                <span className="font-semibold text-sm">محفظة إلكترونية</span>
+              </button>
+
+              {/* الدفع عند الاستلام */}
+              <button
+                onClick={() => setPaymentMethod("cash")}
+                className={`flex flex-col items-center justify-center gap-2 py-4 rounded-xl border transition-all duration-200 ${
+                  paymentMethod === "cash"
+                    ? "bg-blue-600 text-white border-blue-600 shadow-md scale-[1.02]"
+                    : "bg-white text-slate-700 border-slate-300 hover:border-blue-400 hover:shadow"
+                }`}
+              >
+                <Wallet className="w-6 h-6" />
+                <span className="font-semibold text-sm">كاش عند الاستلام</span>
               </button>
             </div>
           </div>
-          
+
           <button
             onClick={handlePlaceOrder}
             disabled={loading}
