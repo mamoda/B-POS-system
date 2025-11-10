@@ -205,8 +205,25 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
         </div>
       </div>
 
-
-<div className="bg-slate-100 rounded-xl p-4 mb-6">
+      {cartCount > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg">
+          <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div>
+              <p className="text-slate-600 text-sm">إجمالي الطلب</p>
+              <p className="text-3xl font-bold text-slate-900">ج.م{cartTotal.toFixed(2)}</p>
+            </div>
+            <button
+              onClick={handleCheckout}
+              disabled={isLoading}
+              className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              الدفع ({cartCount} عناصر)
+            </button>
+          </div>
+        </div>
+      )}
+      <div className="bg-slate-100 rounded-xl p-4 mb-6">
   <h3 className="font-semibold text-slate-900 mb-3">طريقة الدفع</h3>
   <div className="flex gap-3">
     <button
@@ -232,25 +249,6 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
     </button>
   </div>
 </div>
-
-      {cartCount > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg">
-          <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div>
-              <p className="text-slate-600 text-sm">إجمالي الطلب</p>
-              <p className="text-3xl font-bold text-slate-900">ج.م{cartTotal.toFixed(2)}</p>
-            </div>
-            <button
-              onClick={handleCheckout}
-              disabled={isLoading}
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              الدفع ({cartCount} عناصر)
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
