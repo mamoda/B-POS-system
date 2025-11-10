@@ -28,9 +28,9 @@ ON CONFLICT (table_number) DO NOTHING;
 INSERT INTO menu_items (name, description, category, price, available, preparation_time_minutes)
 VALUES 
   ('شاي', 'شاي مصري', 'المشروبات', 8.99, true, 5),
-  ('Calamari Fritti', 'Crispy fried squid served with marinara sauce', 'المشروبات', 12.99, true, 8),
-  ('Spring Rolls', 'Fresh vegetable spring rolls with sweet chili sauce', 'المشروبات', 7.99, true, 6),
-  ('Garlic Bread', 'Toasted bread with garlic butter and herbs', 'المشروبات', 5.99, true, 4)
+  ('قهوة تركي', 'قهوة تركية', 'المشروبات', 12.99, true, 8),
+  ('قهوة فرنسية', 'قهوة فرنسية', 'المشروبات', 7.99, true, 6),
+  ('كافية لاتية', 'كافية لاتية مع الحليب الرغوي', 'المشروبات', 5.99, true, 4)
 ON CONFLICT DO NOTHING;
 
 -- Seed Menu Items - Main Courses
