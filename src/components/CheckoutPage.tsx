@@ -291,7 +291,7 @@ const [paymentMethod, setPaymentMethod] = useState<"card" | "wallet" | "cash">("
             disabled={loading}
             className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-4 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 mb-4"
           >
-            {loading ? "Placing Order..." : "Place Order"}
+            {loading ? "Placing Order..." : " إتمام الطلب"}
           </button>
 
           <p className="text-center text-sm text-slate-600">
