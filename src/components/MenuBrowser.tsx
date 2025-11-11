@@ -140,7 +140,7 @@ export function MenuBrowser({ tableNumber, onCheckout, isLoading }: MenuBrowserP
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="text-right max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map(item => (
             <div
