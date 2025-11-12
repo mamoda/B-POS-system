@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { orderApi, orderItemApi } from '../lib/api';
-import { Order, OrderItem, MenuItem } from '../lib/supabase';
-import { supabase } from '../lib/supabase';
+import { orderApi, orderItemApi } from '../../backend/src/lib/api';
+import { Order, OrderItem, MenuItem } from '../../backend/src/lib/supabase';
+import { supabase } from '../../backend/src/lib/supabase';
 import { CheckCircle2, Clock, AlertCircle } from 'lucide-react';
 
 export function KitchenDisplay() {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, AlertCircle, CheckCircle, Clock } from "lucide-react";
-import { orderApi, orderItemApi } from "../lib/api";
-import { MenuItem, Order } from "../lib/supabase";
+import { orderApi, orderItemApi } from "../../backend/src/lib/api";
+import { MenuItem, Order } from "../../backend/src/lib/supabase";
 import { CreditCard, Smartphone, Wallet } from "lucide-react";
 
 interface Cart {

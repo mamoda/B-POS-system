@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Minus, ShoppingCart, Clock } from 'lucide-react';
-import { menuApi } from '../lib/api';
-import { MenuItem } from '../lib/supabase';
+import { menuApi } from '../../backend/src/lib/api';
+import { MenuItem } from '../../backend/src/lib/supabase';
 
 
 interface Cart {
