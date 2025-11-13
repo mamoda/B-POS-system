@@ -1,247 +1,275 @@
-import { supabase, MenuItem, Table, Order, OrderItem, Payment } from './supabase';
+// NOTE: This file assumes the data types (MenuItem, Table, Order, etc.) are defined in a separate file,
+// or you can copy them from the original 'supabase.ts' file into a new 'types.ts' file.
+// For simplicity, I'm including the necessary types here, assuming they were originally in './supabase'.
+
+// --- Data Types (Copied from original supabase.ts for completeness) ---
+export type MenuItem = {
+  _id: string; // Changed from 'id' to '_id' for MongoDB
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+  image_url: string | null;
+  available: boolean;
+  preparation_time_minutes: number;
+};
+
+export type Table = {
+  _id: string; // Changed from 'id' to '_id' for MongoDB
+  table_number: number;
+  capacity: number;
+  status: string;
+  current_order_id: string | null;
+};
+
+export type Order = {
+  _id: string; // Changed from 'id' to '_id' for MongoDB
+  table_id: string;
+  table_number: number;
+  status: string;
+  subtotal: number;
+  tax: number;
+  total: number;
+  estimated_ready_time: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type OrderItem = {
+  _id: string; // Changed from 'id' to '_id' for MongoDB
+  order_id: string;
+  menu_item_id: string;
+  quantity: number;
+  unit_price: number;
+  special_instructions: string | null;
+  status: string;
+};
+
+export type Payment = {
+  _id: string; // Changed from 'id' to '_id' for MongoDB
+  order_id: string;
+  amount: number;
+  payment_method: string;
+  status: string;
+  stripe_payment_intent_id: string | null;
+};
+
+export type User = {
+  _id: string;
+  username: string;
+  role: 'admin' | 'staff' | 'kitchen';
+};
+
+export type AuthResponse = {
+  token: string;
+  user: User;
+};
+
+// --- API Configuration and Helper Functions ---
+
+const BASE_URL = 'http://localhost:5000/api/v1';
+
+let authToken: string | null = localStorage.getItem('authToken');
+
+export const setAuthToken = (token: string | null) => {
+  authToken = token;
+  if (token) {
+    localStorage.setItem('authToken', token);
+  } else {
+    localStorage.removeItem('authToken');
+  }
+};
+
+const fetcher = async <T>(url: string, options: RequestInit = {}): Promise<T> => {
+  const headers = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  };
+
+  if (authToken) {
+    headers['Authorization'] = \`Bearer \${authToken}\`;
+  }
+
+  const response = await fetch(\`\${BASE_URL}\${url}\`, {
+    ...options,
+    headers,
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+    throw new Error(errorData.error || errorData.message || 'An unknown error occurred');
+  }
+
+  // Handle 204 No Content
+  if (response.status === 204) {
+    return {} as T;
+  }
+
+  const data = await response.json();
+  return data.data as T;
+};
+
+// --- Authentication API ---
+
+export const authApi = {
+  async login(username: string, password: string): Promise<AuthResponse> {
+    const data = await fetcher<AuthResponse>('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+    });
+    setAuthToken(data.token);
+    return data;
+  },
+
+  async logout(): Promise<void> {
+    setAuthToken(null);
+    // No backend call needed for simple JWT logout
+  },
+
+  async getMe(): Promise<User> {
+    return fetcher<User>('/auth/me');
+  },
+};
+
+// --- Menu API ---
 
 export const menuApi = {
   async getMenuItems(): Promise<MenuItem[]> {
-    const { data, error } = await supabase
-      .from('menu_items')
-      .select('*')
-      .eq('available', true)
-      .order('category', { ascending: true });
-
-    if (error) throw error;
-    return data || [];
+    return fetcher<MenuItem[]>('/menu');
   },
 
   async getMenuItemsByCategory(category: string): Promise<MenuItem[]> {
-    const { data, error } = await supabase
-      .from('menu_items')
-      .select('*')
-      .eq('category', category)
-      .eq('available', true)
-      .order('name', { ascending: true });
-
-    if (error) throw error;
-    return data || [];
+    return fetcher<MenuItem[]>(`/menu/category/\${category}`);
   },
 };
+
+// --- Table API ---
 
 export const tableApi = {
   async getTables(): Promise<Table[]> {
-    const { data, error } = await supabase
-      .from('tables')
-      .select('*')
-      .order('table_number', { ascending: true });
-
-    if (error) throw error;
-    return data || [];
+    return fetcher<Table[]>('/tables');
   },
 
   async getTableByNumber(tableNumber: number): Promise<Table | null> {
-    const { data, error } = await supabase
-      .from('tables')
-      .select('*')
-      .eq('table_number', tableNumber)
-      .maybeSingle();
-
-    if (error) throw error;
-    return data;
+    // The backend returns a single object or null, so we use the fetcher directly
+    return fetcher<Table | null>(`/tables/\${tableNumber}`);
   },
 
   async updateTableStatus(tableId: string, status: string, orderId?: string): Promise<void> {
-    const { error } = await supabase
-      .from('tables')
-      .update({
-        status,
-        current_order_id: orderId || null,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', tableId);
-
-    if (error) throw error;
+    await fetcher<void>(`/tables/\${tableId}/status`, {
+      method: 'PUT',
+      body: JSON.stringify({ status, current_order_id: orderId }),
+    });
   },
 };
+
+// --- Order API ---
 
 export const orderApi = {
   async createOrder(tableId: string, tableNumber: number): Promise<Order> {
-    const { data, error } = await supabase
-      .from('orders')
-      .insert({
-        table_id: tableId,
-        table_number: tableNumber,
-        status: 'pending',
-        subtotal: 0,
-        tax: 0,
-        total: 0,
-      })
-      .select()
-      .single();
-
-    if (error) throw error;
-    return data;
+    return fetcher<Order>('/orders', {
+      method: 'POST',
+      body: JSON.stringify({ table_id: tableId, table_number: tableNumber }),
+    });
   },
 
   async getOrder(orderId: string): Promise<Order | null> {
-    const { data, error } = await supabase
-      .from('orders')
-      .select('*')
-      .eq('id', orderId)
-      .maybeSingle();
-
-    if (error) throw error;
-    return data;
+    return fetcher<Order | null>(`/orders/\${orderId}`);
   },
 
   async getOrdersByTable(tableNumber: number): Promise<Order[]> {
-    const { data, error } = await supabase
-      .from('orders')
-      .select('*')
-      .eq('table_number', tableNumber)
-      .order('created_at', { ascending: false });
-
-    if (error) throw error;
-    return data || [];
+    return fetcher<Order[]>(`/orders/table/\${tableNumber}`);
   },
 
   async updateOrder(orderId: string, updates: Partial<Order>): Promise<void> {
-    const { error } = await supabase
-      .from('orders')
-      .update({ ...updates, updated_at: new Date().toISOString() })
-      .eq('id', orderId);
-
-    if (error) throw error;
+    await fetcher<void>(`/orders/\${orderId}`, {
+      method: 'PUT',
+      body: JSON.stringify(updates),
+    });
   },
 
   async updateOrderTotals(orderId: string): Promise<void> {
-    const { data: items } = await supabase
-      .from('order_items')
-      .select('unit_price, quantity')
-      .eq('order_id', orderId);
-
-    if (!items) return;
-
-    const subtotal = items.reduce((sum, item) => sum + (item.unit_price * item.quantity), 0);
-    const tax = subtotal * 0.1;
-    const total = subtotal + tax;
-    const maxPrepTime = items.length > 0 ? Math.max(...items.map(() => 15)) : 0;
-
-    await supabase
-      .from('orders')
-      .update({
-        subtotal,
-        tax,
-        total,
-        estimated_ready_time: new Date(Date.now() + maxPrepTime * 60000).toISOString(),
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', orderId);
+    // The backend handles the calculation and update in a single endpoint
+    await fetcher<void>(`/orders/\${orderId}/totals`, {
+      method: 'PUT',
+    });
   },
 };
+
+// --- Order Item API ---
 
 export const orderItemApi = {
   async addOrderItem(orderId: string, menuItemId: string, quantity: number, price: number, instructions?: string): Promise<OrderItem> {
-    const { data, error } = await supabase
-      .from('order_items')
-      .insert({
-        order_id: orderId,
+    // The backend calculates the price based on menuItemId, so we don't need to pass 'price'
+    return fetcher<OrderItem>(`/orders/\${orderId}/items`, {
+      method: 'POST',
+      body: JSON.stringify({
         menu_item_id: menuItemId,
         quantity,
-        unit_price: price,
-        special_instructions: instructions || null,
-        status: 'pending',
-      })
-      .select()
-      .single();
-
-    if (error) throw error;
-    return data;
+        special_instructions: instructions,
+      }),
+    });
   },
 
   async getOrderItems(orderId: string): Promise<OrderItem[]> {
-    const { data, error } = await supabase
-      .from('order_items')
-      .select('*')
-      .eq('order_id', orderId);
-
-    if (error) throw error;
-    return data || [];
+    return fetcher<OrderItem[]>(`/orders/\${orderId}/items`);
   },
 
   async updateOrderItem(itemId: string, quantity: number): Promise<void> {
-    const { error } = await supabase
-      .from('order_items')
-      .update({ quantity, updated_at: new Date().toISOString() })
-      .eq('id', itemId);
-
-    if (error) throw error;
+    await fetcher<void>(`/orders/items/\${itemId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ quantity }),
+    });
   },
 
   async deleteOrderItem(itemId: string): Promise<void> {
-    const { error } = await supabase
-      .from('order_items')
-      .delete()
-      .eq('id', itemId);
-
-    if (error) throw error;
+    await fetcher<void>(`/orders/items/\${itemId}`, {
+      method: 'DELETE',
+    });
   },
 
   async updateOrderItemStatus(itemId: string, status: string): Promise<void> {
-    const { error } = await supabase
-      .from('order_items')
-      .update({ status, updated_at: new Date().toISOString() })
-      .eq('id', itemId);
-
-    if (error) throw error;
+    await fetcher<void>(`/orders/items/\${itemId}/status`, {
+      method: 'PUT',
+      body: JSON.stringify({ status }),
+    });
   },
 };
 
+// --- Payment API ---
+
 export const paymentApi = {
   async createPayment(orderId: string, amount: number, paymentMethod: string): Promise<Payment> {
-    const { data, error } = await supabase
-      .from('payments')
-      .insert({
-        order_id: orderId,
-        amount,
-        payment_method: paymentMethod,
-        status: 'pending',
-      })
-      .select()
-      .single();
-
-    if (error) throw error;
-    return data;
+    return fetcher<Payment>('/payments', {
+      method: 'POST',
+      body: JSON.stringify({ order_id: orderId, amount, payment_method: paymentMethod }),
+    });
   },
 
   async getPayment(paymentId: string): Promise<Payment | null> {
-    const { data, error } = await supabase
-      .from('payments')
-      .select('*')
-      .eq('id', paymentId)
-      .maybeSingle();
-
-    if (error) throw error;
-    return data;
+    return fetcher<Payment | null>(`/payments/\${paymentId}`);
   },
 
   async updatePaymentStatus(paymentId: string, status: string, stripeId?: string): Promise<void> {
-    const { error } = await supabase
-      .from('payments')
-      .update({
-        status,
-        stripe_payment_intent_id: stripeId || null,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', paymentId);
-
-    if (error) throw error;
+    await fetcher<void>(`/payments/\${paymentId}/status`, {
+      method: 'PUT',
+      body: JSON.stringify({ status, stripe_payment_intent_id: stripeId }),
+    });
   },
 
   async getOrderPayments(orderId: string): Promise<Payment[]> {
-    const { data, error } = await supabase
-      .from('payments')
-      .select('*')
-      .eq('order_id', orderId);
+    return fetcher<Payment[]>(`/payments/order/\${orderId}`);
+  },
+};
 
-    if (error) throw error;
-    return data || [];
+// --- Admin/Kitchen API (New Endpoints) ---
+
+export const adminApi = {
+  async getKitchenOrders(): Promise<any[]> { // Replace 'any[]' with a proper KitchenOrder type if defined
+    return fetcher<any[]>('/admin/kitchen');
+  },
+
+  async getDashboardStats(): Promise<any> { // Replace 'any' with a proper DashboardStats type if defined
+    return fetcher<any>('/admin/dashboard');
   },
 };
