@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Trash2, Edit2, BarChart3 } from 'lucide-react';
-import { supabase, MenuItem } from '../lib/supabase';
+import { supabase, MenuItem } from '../../backend/src/lib/supabase';
 
 export function AdminDashboard() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
