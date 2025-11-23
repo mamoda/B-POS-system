@@ -4,8 +4,7 @@ import { MenuBrowser } from './components/MenuBrowser';
 import { CheckoutPage } from './components/CheckoutPage';
 import { KitchenDisplay } from './components/KitchenDisplay';
 import { AdminDashboard } from './components/AdminDashboard';
-import { orderApi, tableApi } from '../backend/src/lib/api';
-import { Order } from '../backend/src/lib/supabase';
+import { orderApi,tableApi, Order } from './lib/api';
 
 interface MenuItem {
   id: string;
